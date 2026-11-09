@@ -1,0 +1,13 @@
+CREATE TABLE eventos (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    slug VARCHAR(80) NOT NULL UNIQUE,
+    nombre VARCHAR(160) NOT NULL,
+    categoria VARCHAR(80) NOT NULL,
+    juego VARCHAR(100) NOT NULL,
+    pais VARCHAR(80) NOT NULL,
+    lugar VARCHAR(180) NOT NULL,
+    fecha VARCHAR(80) NOT NULL,
+    experiencia VARCHAR(50) NOT NULL,
+    resumen VARCHAR(300) NOT NULL,
+    descripcion CLOB NOT NULL
+);
