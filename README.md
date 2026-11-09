@@ -12,11 +12,11 @@ Desde la raíz del proyecto:
 docker compose up --build
 ```
 
-Abre <http://localhost:8080/eventos>. El frontend Nginx escucha solo en `127.0.0.1` por defecto y reenvía las solicitudes al backend Spring. Para usar otro puerto local, define `FRONTEND_PORT`, por ejemplo `FRONTEND_PORT=8081 docker compose up --build` (en PowerShell: `$env:FRONTEND_PORT=8081; docker compose up --build`).
+El frontend Nginx escucha en todas las interfaces de WSL por defecto y reenvía las solicitudes al backend Spring. Abre <http://localhost:8080/eventos>; si Windows no redirige localhost hacia WSL, ejecuta `hostname -I` en Ubuntu y abre `http://<IP-de-WSL>:8080/eventos` desde Windows. La IP puede cambiar al reiniciar WSL. Esta configuración puede exponer el sitio a otras redes alcanzables: úsala solo en un entorno de confianza y no publiques las credenciales de demostración. Para limitarlo nuevamente a WSL, ejecuta `FRONTEND_BIND_ADDRESS=127.0.0.1 docker compose up -d`. Para cambiar el puerto, define `FRONTEND_PORT`, por ejemplo `FRONTEND_PORT=8081 docker compose up -d`.
 
 | Servicio | Función | Exposición |
 | --- | --- | --- |
-| `frontend` | Nginx como proxy inverso hacia Spring | Puerto local enlazado a loopback, `8080` por defecto |
+| `frontend` | Nginx como proxy inverso hacia Spring | Todas las interfaces de WSL, puerto `8080` por defecto; configurable con `FRONTEND_BIND_ADDRESS` |
 | `backend` | Aplicación Spring Boot/Thymeleaf, compilada con Java 17 y Maven | Solo red interna de Compose |
 | `database` | MySQL 8.0; ejecuta `database/eventos.sql` al inicializar una base vacía | Solo red interna de datos |
 

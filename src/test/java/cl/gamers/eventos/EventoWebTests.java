@@ -77,7 +77,7 @@ class EventoWebTests {
         assertSearch("categoria", "Competencia", "Arena Cosplay y eSports", "Festival Pixel Santiago");
         assertSearch("juego", "Valorant", "Arena Cosplay y eSports", "Festival Pixel Santiago");
         assertSearch("pais", "Argentina", "Conecta Gamer Mendoza", "Festival Pixel Santiago");
-        assertSearch("experiencia", "Principiante", "Retro Gaming Valparaíso", "Festival Pixel Santiago");
+        assertSearch("experiencia", "Principiante", "Retro Gaming Valparaiso", "Festival Pixel Santiago");
         String combinedResults = resultsFor(get("/eventos").param("categoria", "Festival").param("pais", "Chile"));
         org.junit.jupiter.api.Assertions.assertTrue(combinedResults.contains("Festival Pixel Santiago"));
         org.junit.jupiter.api.Assertions.assertFalse(combinedResults.contains("Conecta Gamer Mendoza"));
