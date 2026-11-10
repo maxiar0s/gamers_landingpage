@@ -28,6 +28,8 @@ public class SeguridadConfig {
                     .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/", true).permitAll())
                 .logout(logout -> logout.logoutSuccessUrl("/").permitAll())
+                .headers(headers -> headers.contentSecurityPolicy(csp -> csp.policyDirectives(
+                        "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'")))
                 .build();
     }
 }
